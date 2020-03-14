@@ -23,3 +23,10 @@ class Game(BaseModel):
         db.session.add(game)
         flush()
         return game
+
+    def __repr__(self):
+        return f"{self.__table__}:{self.name}:{self.id}"
+
+    def remove(self):
+        db.session.delete(self)
+        flush()

@@ -1,11 +1,11 @@
 from octogone import create_app, db
-from octogone.models import User, Profile, GameProfile, GameRule, Game, GameRuleProfile, Octogone, Season
 
 application = create_app()
 
 
 @application.shell_context_processor
 def make_shell_context():
+    from octogone.models import User, Profile, GameProfile, GameRule, Game, GameRuleProfile, Octogone, Season
     return {
         "db": db,
         "User": User,

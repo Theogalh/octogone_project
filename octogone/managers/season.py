@@ -9,3 +9,9 @@ class SeasonManager(BaseManager):
     """
 
     model = Season
+
+    def create(self, name):
+        if self.model.query.filter_by(name=name).first():
+            raise ValueError
+        season = self.model.create(name)
+        return season

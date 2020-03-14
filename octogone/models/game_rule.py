@@ -19,8 +19,11 @@ class GameRule(BaseModel):
     game_rule_profiles = db.relationship("GameRuleProfile", backref="game_rule", uselist=True, lazy=True)
 
     @classmethod
-    def create(cls, text, ranked, game_id):
+    def create(cls, game_id, text, ranked):
         game_rule = cls(text=text, ranked=ranked, game_id=game_id)
         db.session.add(game_rule)
         flush()
         return game_rule
+
+    def __repr__(self):
+        return f"{self.__table__}:{self.id}:game:{self.game_id}:{self.text}"
